@@ -9,6 +9,13 @@ const Formulario = ({ pacientes, setPacientes }) => {
   const [sintomas, setSintomas] = useState('')
 
   const [error, setError] = useState(false)
+  
+  const generarId = () => {//genera un id aleatorio para iterar sin problemas
+   const random =Math.random().toString(36).substr(2)
+   const fecha = Date.now().toString(36)
+   return random + fecha
+
+  }
 
 
 
@@ -30,9 +37,10 @@ const Formulario = ({ pacientes, setPacientes }) => {
       propietario,
       email,
       fecha,
-      sintomas
+      sintomas,
+      id: generarId()
     }
-    console.log(objetoPaciente)//se muestra en consola el objeto creado
+    //console.log(objetoPaciente)//se muestra en consola el objeto creado
     setPacientes([...pacientes, objetoPaciente]) //toma una copia del array y lo agrega al final el nuevo objeto
     // y al momento que se genera se agrega a setPaceintes
 
