@@ -24,6 +24,7 @@ const Formulario = ({ pacientes, setPacientes }) => {
     }
 
     setError(false)//si no hay error, se limpia el error
+    //objeto paciente
     const objetoPaciente = {//se crea un objeto con los datos del formulario
       nombre,
       propietario,
@@ -31,6 +32,7 @@ const Formulario = ({ pacientes, setPacientes }) => {
       fecha,
       sintomas
     }
+    console.log(objetoPaciente)//se muestra en consola el objeto creado
     setPacientes([...pacientes, objetoPaciente]) //toma una copia del array y lo agrega al final el nuevo objeto
     // y al momento que se genera se agrega a setPaceintes
 

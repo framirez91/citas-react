@@ -8,11 +8,8 @@ const ListadoPacientes = () => {
                 Administras tus {" "}
                 <span className="text-indigo-600 font-bold">Pacientes y Citas</span>
             </p>
-            <Paciente/>
-            <Paciente/>
-            <Paciente/>
-            <Paciente/>
-            <Paciente/>
+            <Paciente />
+            
 
             
         </div>
