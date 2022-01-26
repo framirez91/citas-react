@@ -1,6 +1,7 @@
-
 import { useState, useEffect } from 'react'
-const Formulario = () => {
+import Error from './Error'
+
+const Formulario = ({ pacientes, setPacientes }) => {
   const [nombre, setNombre] = useState('')
   const [propietario, setPropietario] = useState('')
   const [email, setEmail] = useState('')
@@ -21,8 +22,24 @@ const Formulario = () => {
       setError(true)//muestra el error
       return//para que no se ejecute el resto de la funcion
     }
-    
+
     setError(false)//si no hay error, se limpia el error
+    const objetoPaciente = {//se crea un objeto con los datos del formulario
+      nombre,
+      propietario,
+      email,
+      fecha,
+      sintomas
+    }
+    setPacientes([...pacientes, objetoPaciente]) //toma una copia del array y lo agrega al final el nuevo objeto
+    // y al momento que se genera se agrega a setPaceintes
+
+    //limpiar el formulario
+    setNombre('')
+    setPropietario('')
+    setEmail('')
+    setFecha('')
+    setSintomas('')
   }
 
 
@@ -37,8 +54,7 @@ const Formulario = () => {
       <form
         onSubmit={handleSubmit}
         className="bg-white shadow-md rounded-lg py-10 px-5 mb-10">
-        {error && (<p className="bg-red-800 text-white text-center p-3 uppercase font-bold mb-3 rounded-lg">
-          Todos los campos son obligatorios</p>)}
+        {error && <Error><p>Todos los coampos son obligatorios</p></Error>}
         <div className="mb-5">
           <label htmlFor="mascota" className="block font-bold uppercase text-gray-700">
             Nombre Mascota
