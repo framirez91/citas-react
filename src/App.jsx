@@ -5,7 +5,7 @@ import ListadoPacientes from "./components/ListadoPacientes";
 
 function App() {
   const [pacientes, setPacientes] = useState([]);
-  
+  const [paciente, setPaciente] = useState({})//cada paciente es un objeto por eso este inicia como un objeto vacio//genero la funcion aqui
   return (
 
     <div className="container mx-auto mt-20">
@@ -21,6 +21,7 @@ function App() {
         <ListadoPacientes 
         
         pacientes = {pacientes}
+        setPaciente = {setPaciente}//la paso al componente
         />
         
       </div>

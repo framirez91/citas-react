@@ -1,6 +1,6 @@
 import Paciente from "./Paciente";
 
-const ListadoPacientes = ({pacientes}) => {
+const ListadoPacientes = ({pacientes,setPaciente}) => {//tomo la funcion en el componente
     
 
     return (
@@ -18,12 +18,13 @@ const ListadoPacientes = ({pacientes}) => {
                     <Paciente
                     key = {paciente.id}
                     paciente = {paciente}
+                    setPaciente = {setPaciente}//y la paso al componente
                     />
                 ))}
                 </>
             ): <>
             <h2 className="font-black text-3xl text-center">No Hay Pacientes</h2>
-            <p className=" text-xl mt-5 mb-10 text-center">
+            <p className=" text-lg mt-5 mb-10 text-center">
                     Comienza Agregando Pacientes {" "}
                     <span className="text-indigo-600 font-bold">y Aparareceran en este Lugar</span>
                 </p>
