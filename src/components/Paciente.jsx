@@ -1,5 +1,12 @@
-const Paciente = ({ paciente, setPaciente }) => {
-    const { nombre, propietario, email, fecha, sintomas } = paciente;
+const Paciente = ({ paciente, setPaciente, eliminarPaciente }) => {
+    const { nombre, propietario, email, fecha, sintomas,id } = paciente
+
+    const handleEliminar =()=>{//funcion para confirmar eliminacion
+        const respuesta = confirm('Estas seguro de eliminar este paciente?');//confirma si quiere eliminar el paciente
+        if(respuesta){//si la respuesta es true
+            eliminarPaciente(id);//se llama a la funcion eliminarPaciente
+        }
+    }
 
     return (
         <div className="mx-5 my-10 bg-white shadow-md px-5 py-10 rounded-xl">
@@ -29,6 +36,7 @@ const Paciente = ({ paciente, setPaciente }) => {
                 <button
                     type="button"
                     className="py-2 px-10 bg-red-600 hover:bg-red-700 text-white uppercase font-bold rounded-lg"
+                    onClick={handleEliminar}//sin parentisis se espera al llamar la funcion y no directamente
                 > Eliminar
                 </button>
             </div>
