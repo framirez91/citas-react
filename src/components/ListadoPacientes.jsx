@@ -1,6 +1,9 @@
+
 import Paciente from "./Paciente";
 
 const ListadoPacientes = ({pacientes,setPaciente}) => {//tomo la funcion en el componente
+    
+   
     
 
     return (

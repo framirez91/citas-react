@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import Error from './Error'
 
-const Formulario = ({ pacientes, setPacientes }) => {
+const Formulario = ({ pacientes, setPacientes, paciente, setPaciente }) => {
   const [nombre, setNombre] = useState('')
   const [propietario, setPropietario] = useState('')
   const [email, setEmail] = useState('')
@@ -9,11 +9,24 @@ const Formulario = ({ pacientes, setPacientes }) => {
   const [sintomas, setSintomas] = useState('')
 
   const [error, setError] = useState(false)
-  
+
+  useEffect(() => {//cuando se carga el componente se ejecuta esta funcion
+    if (Object.keys(paciente).length > 0) {//si el objeto paciente tiene alguna propiedad
+        setNombre(paciente.nombre),
+        setPropietario(paciente.propietario),
+        setEmail(paciente.email),
+        setFecha(paciente.fecha),
+        setSintomas(paciente.sintomas)
+
+    }
+  }, [paciente])
+
+
+
   const generarId = () => {//genera un id aleatorio para iterar sin problemas
-   const random =Math.random().toString(36).substr(2)
-   const fecha = Date.now().toString(36)
-   return random + fecha
+    const random = Math.random().toString(36).substr(2)
+    const fecha = Date.now().toString(36)
+    return random + fecha
 
   }
 
@@ -37,19 +50,40 @@ const Formulario = ({ pacientes, setPacientes }) => {
       propietario,
       email,
       fecha,
-      sintomas,
-      id: generarId()
-    }
-    //console.log(objetoPaciente)//se muestra en consola el objeto creado
-    setPacientes([...pacientes, objetoPaciente]) //toma una copia del array y lo agrega al final el nuevo objeto
-    // y al momento que se genera se agrega a setPaceintes
+      sintomas
 
-    //limpiar el formulario
+    }
+
+
+    if (paciente.id) {
+      //editando paciente
+      objetoPaciente.id = paciente.id
+      const pacientesActualizados = pacientes.map(pacienteState => pacienteState.id ===//itera sobre el state y crea una variable temporal pacientestate
+        paciente.id ? objetoPaciente : pacienteState)//cuando identifica el id del paciente que se esta editando, lo reemplaza por el objetoPaciente que es el nuevo que esta en el formulario
+
+      setPacientes(pacientesActualizados)//se actualiza el state
+      setPaciente({})//se limpia el formulario
+
+
+
+
+    } else {
+      //agregando paciente
+      objetoPaciente.id = generarId()
+      setPacientes([...pacientes, objetoPaciente]) //toma una copia del array y lo agrega al final el nuevo objeto
+
+      // y al momento que se genera se agrega a setPaceintes
+
+      //limpiar el formulario
+
+    }
     setNombre('')
     setPropietario('')
     setEmail('')
     setFecha('')
     setSintomas('')
+
+
   }
 
 
@@ -137,7 +171,7 @@ const Formulario = ({ pacientes, setPacientes }) => {
         <input type="submit"
           className="bg-indigo-600 w-full p-3 text-white uppercase font-bold
         hover:bg-indigo-700 cursor-pointer transition-colors"
-          value="Agregar Paciente" />
+          value={paciente.id ? 'Editar Paciente' : 'Agregar Paciente'} />
 
       </form>
     </div>
