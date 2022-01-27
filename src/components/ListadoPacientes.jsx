@@ -1,7 +1,7 @@
 
 import Paciente from "./Paciente";
 
-const ListadoPacientes = ({pacientes,setPaciente}) => {//tomo la funcion en el componente
+const ListadoPacientes = ({pacientes,setPaciente,eliminarPaciente}) => {//tomo la funcion en el componente
     
    
     
@@ -22,6 +22,7 @@ const ListadoPacientes = ({pacientes,setPaciente}) => {//tomo la funcion en el c
                     key = {paciente.id}
                     paciente = {paciente}
                     setPaciente = {setPaciente}//y la paso al componente
+                    eliminarPaciente={eliminarPaciente}
                     />
                 ))}
                 </>
